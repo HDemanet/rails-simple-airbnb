@@ -1,0 +1,73 @@
+
+<div class="row">
+
+  <div class="col-md-8 mb-4">
+    <div class="card mb-4">
+      <div class="card-header bg-light">
+        <% if @flat.picture_url.present? %>
+          <img src="<%= @flat.picture_url %>" alt="Image of <%= @flat.name %>" class="img-fluid" />
+        <% else %>
+          <p>No image available</p>
+        <% end %>
+        <h5><%= @flat.name %></h5>
+      </div>
+      <div class="card-body">
+        <p><strong>Adresse :</strong> <%= @flat.address %></p>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header bg-light">
+        <h5><strong>A bit more about this flat...</strong></h5>
+      </div>
+      <div class="card-body">
+        <p><%= @flat.description %></p>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header bg-light">
+        <h5><strong>Details</strong></h5>
+      </div>
+      <div class="card-body">
+        <p><i class="fas fa-users"></i> <%= @flat.number_of_guests %> people</p>
+        <p><i class="fas fa-euro-sign"></i> <%= @flat.price_per_night %> € / night</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4">
+    <div class="card mb-4">
+      <div class="card-header bg-light">
+        <h5><strong>Book this place!</strong></h5>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div>
+            <strong>From:</strong> <%= @flat.created_at.strftime("%b %d, %Y") %> <br>
+            <strong>To:</strong> <%= (@flat.created_at + 7.days).strftime("%b %d, %Y") %> <!-- Exemple de date de fin -->
+          </div>
+          <%= button_to 'Book', '#', class: 'btn btn-success' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header bg-light">
+        <h5><strong>Share</strong></h5>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-pinterest"></i>
+            <i class="fas fa-envelope"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<%= link_to 'Retour', flats_path, class: 'btn btn-secondary' %>
+<%= link_to 'Edit', edit_flat_path(@flat), class: 'btn btn-warning' %>
